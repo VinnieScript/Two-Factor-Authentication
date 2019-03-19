@@ -23,4 +23,5 @@ Route::get('/OneTimePassword/verify/{emailaddress}/39e871871bcacae98a50eec3699ac
 Route::post('checkotp','maincontroller@checkotp');
 Route::get('/stardom_dashboard/profile','maincontroller@stardom_dashboard');
 Route::post('/resendOTP','maincontroller@resendOTP');
-
+Route::post('/savepost','maincontroller@savepost');
+Route::post('/loadfeeds','maincontroller@loadfeeds');

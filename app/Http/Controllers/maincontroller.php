@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\register;
+use App\post;
 use Illuminate\Support\Facades\Mail;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -11,7 +12,7 @@ class maincontroller extends Controller
 {
     //
 
-    private $SMS_SENDER = "StardomCommunity";
+    private $SMS_SENDER = "Stardom";
     private $RESPONSE_TYPE = 'json';
     private $SMS_USERNAME = 'hademylola@gmail.com';
     private $SMS_PASSWORD = 'Ademilola2@';
@@ -81,8 +82,8 @@ class maincontroller extends Controller
 
         //Preparing post parameters
         $postData = array(
-            'username' => $this->SMS_USERNAME,
-            'password' => $this->SMS_PASSWORD,
+            'username' => 'hademylola@gmail.com',
+            'password' => 'Ademilola2@',
             'message' => $message,
             'sender' => $this->SMS_SENDER,
             'mobiles' => $phone_number,
@@ -123,19 +124,25 @@ class maincontroller extends Controller
        public function initiateSmsGuzzle($phone_number, $message)
     {
         $client = new Client();
-
-        $response = $client->post('http://portal.bulksmsnigeria.net/api/?', [
+try{
+ $response = $client->post('http://portal.bulksmsnigeria.net/api/?', [
             'verify'    =>  false,
             'form_params' => [
-                'username' => $this->SMS_USERNAME,
-                'password' => $this->SMS_PASSWORD,
+                'username' => 'hademylola@gmail.com',
+                'password' => 'Ademilola2@',
                 'message' => $message,
                 'sender' => $this->SMS_SENDER,
                 'mobiles' => $phone_number,
             ],
         ]);
+ $response = json_decode($response->getBody(), true);
+ 
+}catch(RequestException $ex){
+dd($ex);
+}
+       
 
-        $response = json_decode($response->getBody(), true);
+        
     }
 
 
@@ -233,7 +240,21 @@ public function checkotp(Request $r){
 	$check = $member::where('OTP','=',$r->otp)->first();
 
 	if($check!=""){
-		$response = 'Loggedin';
+		$update = $member::find($check->id);
+		if($update){
+			$update->OTP="";
+			$update->save();
+			$response = 'Loggedin';
+
+            session()->put('userId',$check->email);
+            session()->put('fullname',$check->lastname .' '. $check->firstname);
+
+
+		}
+		else{
+			$response="Internal Server Error..try again";
+		}
+		
 	}
 	else{
 
@@ -279,5 +300,37 @@ public function resendOTP(Request $r){
 	return response($response);
 
 }
+
+
+
+
+    public function savepost(Request $r){
+
+        $member = new post();
+        $member->email = $r->userId;
+        $member->postmessage = $r->message;
+        $member->save();
+
+
+        return response('Successfully Posted');
+
+
+
+    }
+
+    public function loadfeeds(Request $r){
+
+        $fetchAll = post::orderBy('created_at','desc')->get();
+
+        //$fetchAll = $member::all()->orderBy('created_at','desc');
+
+        return response()->json([
+            'fetchAll'=>$fetchAll
+        ]);
+    }
+
+
+
+
 
 }

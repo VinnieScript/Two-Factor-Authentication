@@ -4,32 +4,28 @@
 	 <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="{!!asset('images/logo.jpg')}!!"/>
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}">
         <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 	<title>StarDom|Community</title>
 </head>
 <style type="text/css">
-	.klass{
-		margin-left: 10px;
-		padding: 5px;
-		font-family: candara;
-		font-weight: bold;
-	}	
-
-	a:visited {
-		color: #fff;
-	}
-
-	a:hover{
-		text-decoration: underline;
-		color: #e9e9e9;
-		cursor: pointer;
-		font-size: 1.1em;
-	}
+	
 
 
 </style>
 <script type="text/javascript">
+	function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
 	$(document).ready(function(){
+
+
+
 		$("#login").click(function(){
 			var emailaddress = document.getElementById('emailaddress').value;
 			var password = document.getElementById('password').value;
@@ -74,15 +70,44 @@
 
 </script>
 <body style="background-color: #e9e9e9">
-<div style="width: 100%;height: 100%">
-	<div style="width: 100%;height: 100px;background-color: #2E8B57">
+<div style="width: 100%;height: 100%"   >
+	<div id="banner">
+    <div  style="float: left;" id="menuicon">
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+   							 <i class="fa fa-bars">
+   							 	 <img src="{{asset('images/menu.png')}}" width="50px" height="50px" />
+
+   							 </i>
+   							
+  						</a>
+  					<div class="topnav">
+	
+ 
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="#androidversion">Download Mobile Version</a>
+    <a href="#stardom_dashboard">StarDom</a>
+    <a href="#support">Support(24/7) Service</a>
+    <a href="#ticket">Ticket</a>
+    
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  
+  
+</div>
+</div>
 		<table>
 			<tr>
+				<td>
+
+					
+
+				</td>
 				<td ><div style="width: 100%;" align="left"><img src="{{asset('images/logo.png')}}" width="50px"  /></div></td>
 				<td ><div style="font-family: candara;font-size: 1.5em;line-height:60px;color:#fff;font-weight: bold;" align="left"><a href="/" style="text-decoration: none;">StarDom</a></div></td>
 			</tr>
 		</table>
-		<div style="width: 100%;" align="right">
+		<div style="width: 100%;" align="right" id="navbar">
 			<span class="klass"><a>Download MobileVersion</a></span>
 			<span class="klass"><a>StarDom</a></span>
 			<span class="klass"><a>Support(24/7) Service</a></span>
@@ -94,7 +119,7 @@
 	</div>
 <div style="width:100%" align="center">
 	
-<div style="margin-top: 5%;width: 50%;margin-bottom: 150px">
+<div   id="loginDiv">
 	
 	<fieldset>
 		<legend style="font-family: candara;font-weight: bold">LoginDetails</legend>
@@ -117,12 +142,12 @@
 	
 	
 </div>
-<footer style="color:#fff;bottom: 0px;width: 100%;background-color: #000;opacity: 0.6;font-family: candara" align="center">
+<footer style="color:#fff;bottom: 0px;width: 100%;margin-top: 100%; height:100%;background-color: #000;opacity: 0.6;font-family: candara" >
 
 
-<table style="width: 100%">
+<table style="width: 100%"  class="footerId">
 	<tr>
-		<td><h1>StarDom Community</h1><br/><br/></td>
+		<td><h1>StarDom Community</h1></td>
 		<td><div>
                 <h3 >AboutUs</h3>
                 <ul style="color: #fff" >
@@ -172,7 +197,59 @@
 
 </table>
 
+<div align="center" id="footerIdmobile">
+<table style="width: 100%">
+	<tr>
+		<h1>StarDom Community</h1></tr>
+		<tr><div>
+                <h3 >AboutUs</h3>
+                <ul style="color: #fff" >
+                  <li><u>Social Media Channel</u></li>
+                  <li><u>Affliates</u></li>
+                  <li><u>Group</u></li>
+                  <li><u>Support</u></li>
+                </ul>
+              </div></tr>
+		<tr>
+			<div>
+                <h3 >Support</h3>
+                <ul style="color: #fff" >
+                  <li><u>Social Media Channel</u></li>
+                  <li><u>Affliates</u></li>
+                  <li><u>Group</u></li>
+                  <li><u>Support</u></li>
+                </ul>
+              </div>
 
+		</tr>
+		<tr>
+			<div>
+                <h3 >Afflilates</h3>
+                <ul style="color: #fff" >
+                  <li><u>Social Media Channel</u></li>
+                  <li><u>Affliates</u></li>
+                  <li><u>Group</u></li>
+                  <li><u>Support</u></li>
+                </ul>
+              </div>
+
+		</tr>
+<tr>
+			<div>
+                <h3 >Co-operate</h3>
+                <ul style="color: #fff" >
+                  <li><u>Social Media Channel</u></li>
+                  <li><u>Affliates</u></li>
+                  <li><u>Group</u></li>
+                  <li><u>Support</u></li>
+                </ul>
+              </div>
+
+		</tr>
+	
+
+</table>
+</div>
 
  © 2019 Copyright 
 

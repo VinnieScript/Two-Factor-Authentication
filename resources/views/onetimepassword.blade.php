@@ -65,6 +65,7 @@ document.getElementById('response').innerHTML="Please Wait..";
 		 },
 		 success:function(data){
 		 	document.getElementById('response').innerHTML=data;
+		 	
 
 		 },
 		 error:function(object,status,e){
@@ -89,6 +90,9 @@ document.getElementById('response').innerHTML="Please Wait..";
                     
                     success:function(data){
                            document.getElementById('response').innerHTML=data
+                           if(data== 'Loggedin'){
+		 		location='/stardom_dashboard/profile';
+		 	}
                                     
                         },
                     error:function(object,status,e){
